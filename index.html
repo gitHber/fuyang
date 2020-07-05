@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>科三</title>
+    <script src="./web-animations.min.js"></script>
+    <style>
+      body {
+        padding: 20px;
+      }
+      .red-green {
+        position: absolute;
+        border: 1px solid #000;
+        border-radius: 4px;
+        transform: translate(-50%, -50%);
+        display: flex;
+      }
+      .red {
+        display: inline-block;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background-color: red;
+      }
+      .green {
+        display: inline-block;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background-color: green;
+      }
+      #root {
+        position: relative;
+      }
+      #tooltip {
+        position: fixed;
+        right: 10px;
+        top: 10px;
+        border-radius: 4px;
+        box-shadow: 0px 0px 4px #ccc;
+        width: 400px;
+        font-size: 12px;
+        padding: 20px;
+      }
+      #p3 {
+        background-color: #bbbb56;
+      }
+      #p4 {
+        background-color: green;
+      }
+      @keyframes shining {
+        0% {
+          box-shadow: 0 0 2px #13caba;
+        }
+        50% {
+          box-shadow: 0 0 20px #097d73;
+        }
+        100% {
+          box-shadow: 0 0 2px #13caba;
+        }
+      }
+      #car {
+        z-index: 2;
+        border-radius: 50%;
+        width: 10px;
+        height: 10px;
+        position: absolute;
+        top: 700px;
+        left: 1020px;
+        background-color: #0d8075;
+        transform: translate(-50%, -50%);
+        animation: shining 2s infinite;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root">
+      <div id="car"></div>
+    </div>
+    <div id="tooltip"></div>
+    <button id="p3">三号线</button>
+    <button id="p4">四号线</button>
+    <a href="https://github.com/gitHber/fuyang">github</a>
+    <script src="./index.js"></script>
+  </body>
+</html>
