@@ -36,7 +36,7 @@
       #tooltip {
         position: fixed;
         right: 10px;
-        top: 10px;
+        top: 60px;
         border-radius: 4px;
         box-shadow: 0px 0px 4px #ccc;
         width: 400px;
@@ -45,9 +45,11 @@
       }
       #p3 {
         background-color: #bbbb56;
+        z-index: 1;
       }
       #p4 {
         background-color: green;
+        z-index: 1;
       }
       @keyframes shining {
         0% {
@@ -78,9 +80,10 @@
     <div id="root">
       <div id="car"></div>
     </div>
-    <div id="tooltip"></div>
     <button id="p3">三号线</button>
     <button id="p4">四号线</button>
+    <div id="tooltip"></div>
+
     <a href="https://github.com/gitHber/fuyang">github</a>
     <script src="./index.js"></script>
   </body>
