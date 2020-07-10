@@ -322,9 +322,6 @@ colors.forEach((color, i) => {
   transformPathToDiv(path_2_2).forEach((p) => createPath(p, "#000", 2, 3));
   buttons[i].style.backgroundColor = color;
   buttons[i].addEventListener("click", () => {
-    Array.from(document.getElementsByClassName(i)).forEach(
-      (node) => (node.style.opacity = "1")
-    );
     [0, 1, 2, 3]
       .filter((index) => index !== i)
       .map((index) =>
@@ -332,6 +329,10 @@ colors.forEach((color, i) => {
           (node) => (node.style.opacity = ".01")
         )
       );
+    debugger;
+    Array.from(document.getElementsByClassName(i)).forEach(
+      (node) => (node.style.opacity = "1")
+    );
 
     const keyframes = paths[i].map(([left, top]) => ({
       left: left + offset[0] + "px",

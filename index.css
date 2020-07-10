@@ -45,6 +45,12 @@ body {
   right: 10px;
   top: 60px;
 }
+@media (max-width: 1460px) {
+  #tooltip {
+    left: 10px;
+    top: 350px;
+  }
+}
 #operate {
   left: 10px;
   top: 60px;
