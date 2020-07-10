@@ -1,0 +1,108 @@
+body {
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.1);
+}
+.radio label {
+  font-size: 20px;
+}
+.point {
+  position: absolute;
+  z-index: 1;
+  color: #fff;
+  background: blue;
+  font-size: 12px;
+  padding: 2px;
+  border-radius: 4px;
+  cursor: pointer;
+  transform: translate(-50%, -50%);
+}
+.red-green {
+  z-index: 1;
+  position: absolute;
+  border: 1px solid #000;
+  border-radius: 4px;
+  transform: translate(-50%, -50%);
+  display: flex;
+}
+.red {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: red;
+}
+.green {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: green;
+}
+#root {
+  position: relative;
+}
+#tooltip {
+  right: 10px;
+  top: 60px;
+}
+#operate {
+  left: 10px;
+  top: 60px;
+}
+.box {
+  position: fixed;
+  border-radius: 4px;
+  box-shadow: 0px 0px 4px #ccc;
+  width: 300px;
+  font-size: 12px;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.8);
+}
+button {
+  z-index: 1;
+  border: none;
+  outline: 0;
+  width: 120px;
+  height: 46px;
+  box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2),
+    0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+  border-radius: 4px;
+  margin: 10px;
+  font-size: 20px;
+  color: #fff;
+}
+button:hover {
+  box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
+    0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+}
+button:active {
+  box-shadow: 0px 5px 5px -3px rgba(0, 0, 0, 0.2),
+    0px 8px 10px 1px rgba(0, 0, 0, 0.14), 0px 3px 14px 2px rgba(0, 0, 0, 0.12);
+}
+
+@keyframes shining {
+  0% {
+    box-shadow: 0 0 2px rgba(255, 255, 255, 0.5);
+    background-color: rgba(0, 0, 0, 0.8);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(0, 0, 0, 1);
+    background-color: rgba(255, 255, 255, 0.8);
+  }
+  100% {
+    box-shadow: 0 0 2px rgba(255, 255, 255, 0.5);
+    background-color: rgba(0, 0, 0, 0.8);
+  }
+}
+#car {
+  z-index: 2;
+  border-radius: 50%;
+  width: 15px;
+  height: 15px;
+  position: absolute;
+  top: 100px;
+  left: 100px;
+  background-color: #000;
+  transform: translate(-50%, -50%);
+  animation: shining 2s infinite;
+}

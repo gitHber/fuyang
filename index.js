@@ -1,42 +1,80 @@
 const container = document.getElementById("root");
 const tooltip = document.getElementById("tooltip");
+const offset = [0, -300];
+const colors = ["#F36969", "#45A8E6", "#4ACFB1", "#FF9B54"];
+let path_2_1 = [
+  [1020, 1400],
+  [1020, 700],
+  [720, 700],
+  [720, 1100],
+  [700, 1100],
+];
+let path_2_2 = [
+  [720, 1100],
+  [1000, 1100],
+  [1000, 1400],
+  [1020, 1400],
+];
 
 let path1 = [
-  [1020, 700],
-  [1020, 0],
-  [720, 0],
-  [720, 400],
-  [700, 400],
+  [1020, 1400],
+  [1060, 1400],
+  [1060, 660],
+  [740, 660],
+  [740, 620],
+  [1060, 620],
+  [1060, 320],
+  [1160, 320],
+  [1160, 300],
+  [720, 300],
 ];
 let path2 = [
-  [720, 400],
-  [1000, 400],
-  [1000, 700],
-  [1020, 700],
-];
-let path4 = [
-  [700, 400],
-  [700, 250],
-  [350, 250],
-  [0, 250],
-  [0, 260],
-  [350, 260],
-  [690, 260],
-  [690, 400],
-  [700, 400],
+  [720, 300],
+  [700, 300],
+  [700, 580],
+  [720, 580],
+  [720, 320],
+  [1020, 320],
+  [1020, 600],
+  [700, 600],
+  [700, 680],
+  [1040, 680],
+  [1040, 1400],
 ];
 let path3 = [
-  [690, 400],
-  [690, 640],
-  [350, 640],
-  [350, 650],
-  [700, 650],
-  [700, 400],
+  [690, 1100],
+  [690, 1340],
+  [350, 1340],
+  [350, 1350],
+  [700, 1350],
+  [700, 1100],
+];
+let path4 = [
+  [700, 1100],
+  [700, 950],
+  [350, 950],
+  [0, 950],
+  [0, 960],
+  [350, 960],
+  [690, 960],
+  [690, 1100],
+  [700, 1100],
+];
+
+const paths = [
+  path1,
+  path2,
+  [...path_2_1, ...path3, ...path_2_2],
+  [...path_2_1, ...path4, ...path_2_2],
 ];
 
 let points = [
   {
-    pos: [1020, 700],
+    pos: [
+      [1020, 1400, 0, 2, 3],
+      [700, 300, 1],
+    ],
+
     title: "起步",
     des: `
       一、先交身份证，面部识别，验证通过，语音播报开始考试，下车环绕摁按钮
@@ -74,69 +112,93 @@ let points = [
   `,
   },
   {
-    pos: [1020, 650],
+    pos: [
+      [1020, 1350, 2, 3],
+      [800, 1100, 2, 3],
+      [1060, 1250, 0],
+      [1040, 1100, 1],
+    ],
     title: "直线行驶",
     des: "驶上道路后，关左灯，前面有车先等其走远，加到三档，对地上的点直线行驶",
   },
   {
-    pos: [1020, 350],
-    title: "超车和驶离超车道",
+    pos: [
+      [1020, 1050, 2, 3],
+      [1060, 950, 0],
+      [1040, 800, 1],
+    ],
+    title: "超车",
     des: "打灯之后等三秒，缓缓转向，灯灭了的话，赶紧重新打上",
   },
   {
-    pos: [1020, 0],
+    pos: [[740, 640, 0]],
+    title: "人行横道",
+    des: "",
+  },
+  {
+    pos: [[1020, 700, 2, 3]],
     title: "隧道",
     des: "没啥可说的",
   },
   {
-    pos: [900, 0],
+    pos: [[900, 700, 2, 3]],
     title: "四挡5秒",
     des:
       "也可以在外面道路较长的地方做，加速到35码左右，挂四挡，滑行，默数五秒，换三档，记住不要低于25码换三档",
   },
   {
-    pos: [720, 20],
+    pos: [
+      [720, 720, 2, 3],
+      [900, 660, 0],
+      [800, 680, 1],
+    ],
     title: "加减档",
     des: "降速到20码以下，换二档，加速到20以上，换三档",
   },
   {
-    pos: [720, 200],
-    title: "学校区域",
+    pos: [
+      [720, 900, 2, 3],
+      [850, 620, 0],
+      [950, 600, 1],
+    ],
+    title: "学校",
     des: "左右观察，摇头幅度大一点",
   },
   {
-    pos: [350, 640],
-    title: "掉头",
-    des: "先打左灯，降速停稳，挂一档，左打死，观察路况掉头",
-  },
-  {
-    pos: [400, 650],
-    title: "会车",
-    des: "左右观察，摇头幅度大一点",
-  },
-  {
-    pos: [0, 250],
-    title: "掉头",
-    des: "先打左灯，降速停稳，挂一档，左打死，观察路况掉头",
-  },
-  {
-    pos: [40, 260],
-    title: "会车",
-    des: "左右观察，摇头幅度大一点",
-  },
-
-  {
-    pos: [740, 400],
+    pos: [
+      [740, 1100, 2, 3],
+      [800, 620, 0],
+      [900, 600, 1],
+    ],
     title: "公交车",
     des: "加速到二挡，左右摇头，之后再加到三档",
   },
   {
-    pos: [800, 400],
-    title: "直线行驶",
-    des: "一样，稳住就行",
+    pos: [
+      [350, 1340, 2],
+      [0, 950, 3],
+      [1160, 310, 0],
+      [710, 580, 1],
+    ],
+    title: "掉头",
+    des: "先打左灯，降速停稳，挂一档，左打死，观察路况掉头",
   },
   {
-    pos: [900, 400],
+    pos: [
+      [400, 1350, 2],
+      [40, 960, 3],
+      [1060, 520, 0],
+      [1020, 400, 1],
+    ],
+    title: "会车",
+    des: "左右观察，摇头幅度大一点",
+  },
+  {
+    pos: [
+      [900, 1100, 2, 3],
+      [760, 300, 0],
+      [1040, 1300, 1],
+    ],
     title: "靠边停车",
     des: `
       1. 在指示牌前先停车，换成一档，继续往前开
@@ -148,15 +210,15 @@ let points = [
 ];
 let redLights = [
   {
-    pos: [350, 255],
+    pos: [350, 955, 3],
     des: "红绿灯约在10s左右，比较短，不要全程一档过，加到三档，准备前面掉头",
   },
   {
-    pos: [695, 255],
+    pos: [695, 955, 3],
     des: "红绿灯基本上只能过一辆车，所以等前车走了自己再等下一个",
   },
   {
-    pos: [680, 400],
+    pos: [680, 1100, 2, 3],
     des: `
       这个红绿灯就是三四号线的分界点了,进入路口之前能听到语音提示，打上转向灯，
       1. 右转不需要看灯，只需要看路况
@@ -167,7 +229,7 @@ let redLights = [
       `,
   },
   {
-    pos: [695, 645],
+    pos: [695, 1345, 2],
     des: `
   1. 去的时候右转不需要看灯，注意路况即可，后面路程较长，如果前面没加四挡，可以加到四挡5s，流程和前面四挡一致
   2. 回程左转需要看灯，绿灯很长，不用着急
@@ -191,18 +253,21 @@ function transformPathToDiv(path) {
   }
   return divs;
 }
-function createPath({ pos, w, h }, color = "#000") {
+function createPath({ pos, w, h }, color = "#000", ...args) {
   let div = document.createElement("div");
   div.style.position = "absolute";
-  div.style.left = (w > 0 ? pos[0] : pos[0] + w) + "px";
-  div.style.top = (h > 0 ? pos[1] : pos[1] + h) + "px";
+  div.style.left = (w > 0 ? pos[0] : pos[0] + w) + offset[0] + "px";
+  div.style.top = (h > 0 ? pos[1] : pos[1] + h) + offset[1] + "px";
   div.style.width = Math.abs(w) + "px";
   div.style.height = Math.abs(h) + "px";
   div.style.border = `1px solid ${color}`;
+  args.forEach((arg) => {
+    div.classList.add(arg);
+  });
   container.appendChild(div);
 }
 function createRedLight(lights) {
-  lights.forEach(({ pos: [x, y], des }) => {
+  lights.forEach(({ pos: [x, y, ...args], des }) => {
     let dot = document.createElement("div");
     let red = document.createElement("i");
     let green = document.createElement("i");
@@ -211,57 +276,117 @@ function createRedLight(lights) {
     dot.appendChild(red);
     dot.appendChild(green);
     dot.classList.add("red-green");
-    dot.style.left = x + "px";
-    dot.style.top = y + "px";
+    dot.style.left = x + offset[0] + "px";
+    dot.style.top = y + offset[1] + "px";
     dot.title = "红绿灯";
     tip(dot, des);
+    args.forEach((arg) => {
+      dot.classList.add(arg);
+    });
     container.appendChild(dot);
   });
 }
 function createPoints(points) {
-  points.forEach(({ pos: [x, y], title, des }) => {
-    let point = document.createElement("i");
-    point.style.position = "absolute";
-    point.style.left = x + "px";
-    point.style.top = y + "px";
-    point.style.background = "blue";
-    point.style.color = "#fff";
-    point.style.fontSize = "12px";
-    point.style.padding = "2px";
-    point.style.borderRadius = "4px";
-    point.style.cursor = "pointer";
-    point.style.transform = "translate(-50%, -50%)";
-    point.innerText = title;
-    tip(point, des);
-    container.appendChild(point);
+  points.forEach(({ pos, title, des }) => {
+    pos.forEach(([x, y, ...args]) => {
+      let point = document.createElement("i");
+      point.classList.add("point");
+      point.style.left = x + offset[0] + "px";
+      point.style.top = y + offset[1] + "px";
+      point.innerText = title;
+      tip(point, des);
+      args.forEach((arg) => {
+        point.classList.add(arg);
+      });
+      container.appendChild(point);
+    });
   });
 }
-transformPathToDiv(path1).forEach((p) => createPath(p));
-transformPathToDiv(path2).forEach((p) => createPath(p));
 
-transformPathToDiv(path3).forEach((p) => createPath(p, "#bbbb56"));
-transformPathToDiv(path4).forEach((p) => createPath(p, "green"));
 createRedLight(redLights);
 createPoints(points);
 
-const p3 = document.getElementById("p3");
-const p4 = document.getElementById("p4");
+const b1 = document.getElementById("b1");
+const b2 = document.getElementById("b2");
+const b3 = document.getElementById("b3");
+const b4 = document.getElementById("b4");
 const car = document.getElementById("car");
-p3.addEventListener("click", () => {
-  const keyframes = [...path1, ...path3, ...path2].map(([left, top]) => ({
-    left: left + "px",
-    top: top + "px",
-  }));
-  car.animate(keyframes, {
-    duration: 40000,
+const buttons = [b1, b2, b3, b4];
+
+colors.forEach((color, i) => {
+  transformPathToDiv(paths[0]).forEach((p) => createPath(p, colors[0], 0));
+  transformPathToDiv(paths[1]).forEach((p) => createPath(p, colors[1], 1));
+  transformPathToDiv(paths[2]).forEach((p) => createPath(p, colors[2], 2));
+  transformPathToDiv(paths[3]).forEach((p) => createPath(p, colors[3], 3));
+  transformPathToDiv(path_2_1).forEach((p) => createPath(p, "#000", 2, 3));
+  transformPathToDiv(path_2_2).forEach((p) => createPath(p, "#000", 2, 3));
+  buttons[i].style.backgroundColor = color;
+  buttons[i].addEventListener("click", () => {
+    Array.from(document.getElementsByClassName(i)).forEach(
+      (node) => (node.style.opacity = "1")
+    );
+    [0, 1, 2, 3]
+      .filter((index) => index !== i)
+      .map((index) =>
+        Array.from(document.getElementsByClassName(index)).forEach(
+          (node) => (node.style.opacity = ".01")
+        )
+      );
+
+    const keyframes = paths[i].map(([left, top]) => ({
+      left: left + offset[0] + "px",
+      top: top + offset[1] + "px",
+    }));
+    car.animate(keyframes, {
+      duration: 40000,
+      fill: "forwards",
+    });
   });
 });
-p4.addEventListener("click", () => {
-  const keyframes = [...path1, ...path4, ...path2].map(([left, top]) => ({
-    left: left + "px",
-    top: top + "px",
-  }));
-  car.animate(keyframes, {
-    duration: 40000,
+
+Array.from(document.getElementsByClassName("0")).forEach(
+  (node) => (node.style.opacity = "1")
+);
+Array.from(document.getElementsByClassName("1")).forEach(
+  (node) => (node.style.opacity = "1")
+);
+Array.from(document.getElementsByClassName("2")).forEach(
+  (node) => (node.style.opacity = ".01")
+);
+Array.from(document.getElementsByClassName("3")).forEach(
+  (node) => (node.style.opacity = ".01")
+);
+
+document.querySelectorAll('[name="date"]').forEach((node) => {
+  node.addEventListener("change", (e) => {
+    if (e.target.checked) {
+      if (e.target.value === "single") {
+        Array.from(document.getElementsByClassName("0")).forEach(
+          (node) => (node.style.opacity = "1")
+        );
+        Array.from(document.getElementsByClassName("1")).forEach(
+          (node) => (node.style.opacity = "1")
+        );
+        Array.from(document.getElementsByClassName("2")).forEach(
+          (node) => (node.style.opacity = ".01")
+        );
+        Array.from(document.getElementsByClassName("3")).forEach(
+          (node) => (node.style.opacity = ".01")
+        );
+      } else {
+        Array.from(document.getElementsByClassName("0")).forEach(
+          (node) => (node.style.opacity = ".01")
+        );
+        Array.from(document.getElementsByClassName("1")).forEach(
+          (node) => (node.style.opacity = ".01")
+        );
+        Array.from(document.getElementsByClassName("2")).forEach(
+          (node) => (node.style.opacity = "1")
+        );
+        Array.from(document.getElementsByClassName("3")).forEach(
+          (node) => (node.style.opacity = "1")
+        );
+      }
+    }
   });
 });

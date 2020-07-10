@@ -5,86 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>科三</title>
     <script src="./web-animations.min.js"></script>
-    <style>
-      body {
-        padding: 20px;
-      }
-      .red-green {
-        position: absolute;
-        border: 1px solid #000;
-        border-radius: 4px;
-        transform: translate(-50%, -50%);
-        display: flex;
-      }
-      .red {
-        display: inline-block;
-        width: 10px;
-        height: 10px;
-        border-radius: 50%;
-        background-color: red;
-      }
-      .green {
-        display: inline-block;
-        width: 10px;
-        height: 10px;
-        border-radius: 50%;
-        background-color: green;
-      }
-      #root {
-        position: relative;
-      }
-      #tooltip {
-        position: fixed;
-        right: 10px;
-        top: 60px;
-        border-radius: 4px;
-        box-shadow: 0px 0px 4px #ccc;
-        width: 400px;
-        font-size: 12px;
-        padding: 20px;
-      }
-      #p3 {
-        background-color: #bbbb56;
-        z-index: 1;
-      }
-      #p4 {
-        background-color: green;
-        z-index: 1;
-      }
-      @keyframes shining {
-        0% {
-          box-shadow: 0 0 2px #13caba;
-        }
-        50% {
-          box-shadow: 0 0 20px #097d73;
-        }
-        100% {
-          box-shadow: 0 0 2px #13caba;
-        }
-      }
-      #car {
-        z-index: 2;
-        border-radius: 50%;
-        width: 10px;
-        height: 10px;
-        position: absolute;
-        top: 700px;
-        left: 1020px;
-        background-color: #0d8075;
-        transform: translate(-50%, -50%);
-        animation: shining 2s infinite;
-      }
-    </style>
+    <link rel="stylesheet" href="./index.css" />
   </head>
   <body>
     <div id="root">
       <div id="car"></div>
     </div>
-    <button id="p3">三号线</button>
-    <button id="p4">四号线</button>
-    <div id="tooltip"></div>
+    <div id="operate" class="box">
+      <div class="radio">
+        <input type="radio" id="single" name="date" value="single" checked />
+        <label for="single">单号日期</label>
+        <input type="radio" id="double" name="date" value="double" />
+        <label for="double">双号日期</label>
+      </div>
+      <br />
+      <button id="b1">一号线</button>
+      <button id="b2">二号线</button>
+      <br />
+      <button id="b3">三号线</button>
+      <button id="b4">四号线</button>
+      <br />
+      <a href="https://github.com/gitHber/fuyang" style="font-size: 18px;"
+        >github源代码</a
+      >
+    </div>
 
-    <a href="https://github.com/gitHber/fuyang">github</a>
+    <div id="tooltip" class="box"></div>
+
     <script src="./index.js"></script>
   </body>
 </html>
